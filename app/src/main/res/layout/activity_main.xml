@@ -68,7 +68,7 @@
     android:layout_marginLeft="8dp"
     android:paddingBottom="8dp"
     android:paddingLeft="8dp"
-    android:text="Ksh 0.00"
+        android:text="£0.00"
     android:textAllCaps="false"
     android:textAppearance="?android:textAppearanceMedium"
     android:textColor="#000000" />
