@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     int number = 0;
     int pricePerCup = 2;
     String name = "_dennoT8";
-    String toppingSelected;
-    boolean checked = false;
+    String whipcreamTopping;
+    String chocolateTopping;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void isClicked(View view) {
 
-        checked = ((CheckBox) view).isChecked();
-        if (checked) {
-            toppingSelected = "Whip Cream";
-        } else {
-            toppingSelected = "None for me, thank you";
-        }
+        boolean whipcreamIsChecked = ((CheckBox) findViewById(R.id.whip_cream)).isChecked();
+        boolean chocolateIsChecked = ((CheckBox) findViewById(R.id.chocolate)).isChecked();
+        if (whipcreamIsChecked)
+            whipcreamTopping = "Yes please";
+        else
+            whipcreamTopping = "No thanks";
+        if (chocolateIsChecked)
+            chocolateTopping = "Yes please";
+        else
+            chocolateTopping = "No thanks";
+
     }
 
     /**
@@ -80,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        Log.e("MainActivity", "Price is " + price + "\nAnd topping 'checked' status is " + checked);
-
         String thankNote = createOrderSummary(price);
         displayMessage(thankNote);
 
@@ -96,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        String thankNote = "Name: " + name + "\nTopping: " + toppingSelected + "\nQuantity: " + number + " cups" + "\nTotal: £" + price;
+        String thankNote = "Name: " + name + "\nWhip Cream Topping?: " + whipcreamTopping;
+        thankNote += "\nChocolate Topping?: " + chocolateTopping + "\nQuantity: " + number + " cups";
+        thankNote += "\nTotal: £" + price;
         return thankNote;
     }
 
