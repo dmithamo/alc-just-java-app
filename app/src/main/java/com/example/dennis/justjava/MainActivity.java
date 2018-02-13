@@ -39,9 +39,12 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void isClicked(View view) {
+        CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
 
-        boolean whipcreamIsChecked = ((CheckBox) findViewById(R.id.whip_cream)).isChecked();
-        boolean chocolateIsChecked = ((CheckBox) findViewById(R.id.chocolate)).isChecked();
+        boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
+        boolean chocolateIsChecked = chocolateCheckBox.isChecked();
+
         if (whipcreamIsChecked)
             whipcreamTopping = "Yes please";
         else
