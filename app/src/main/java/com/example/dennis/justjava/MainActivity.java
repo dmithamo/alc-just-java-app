@@ -10,6 +10,7 @@ package com.example.dennis.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     int pricePerCup = 2;
     String name = "_dennoT8";
     String toppingSelected;
+    boolean checked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void isClicked(View view) {
-        boolean checked = false;
+
         checked = ((CheckBox) view).isChecked();
         if (checked) {
             toppingSelected = "Whip Cream";
         } else {
             toppingSelected = "None for me, thank you";
         }
+
 
     }
 
@@ -79,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
+        Log.e("MainActivity", "Price is " + price + "\nAnd topping 'checked' status is " + checked);
+
         String thankNote = createOrderSummary(price);
         displayMessage(thankNote);
 
 //      Change the "press 'ORDER' button to confirm order, because order has been placed.
         TextView pressOrder = findViewById(R.id.press_order_text_view);
         pressOrder.setText("Order Confirmed :) ");
-
     }
 
     /**
