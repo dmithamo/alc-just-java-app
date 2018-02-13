@@ -4,14 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
     android:orientation="vertical"
     tools:context="com.example.dennis.justjava.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toppings"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whip Cream"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:paddingTop="8dp"
         android:text="Quantity"
         android:textAllCaps="true"
@@ -20,13 +46,11 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="8dp"
             android:onClick="decrement"
             android:text="-"
             android:textAllCaps="true" />
@@ -54,32 +78,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:paddingTop="8dp"
-        android:text="Price"
+        android:text="order summary "
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium" />
 
 
     <TextView
-    android:id="@+id/price_text_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:paddingBottom="8dp"
-    android:paddingLeft="8dp"
-        android:text="£0.00"
-    android:textAllCaps="false"
-    android:textAppearance="?android:textAppearanceMedium"
-    android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/thanks_text_view"
+        android:id="@+id/order_summary_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
+        android:text="£0.00"
+        android:textAllCaps="false"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/press_order_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         android:text="Press 'ORDER' to confirm your order"
         android:textAllCaps="false"
         android:textAppearance="?android:textAppearanceMedium"
@@ -88,7 +109,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:onClick="submitOrder"
         android:padding="8dp"
         android:text="Order"
