@@ -45,14 +45,19 @@ public class MainActivity extends AppCompatActivity {
         boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
         boolean chocolateIsChecked = chocolateCheckBox.isChecked();
 
-        if (whipcreamIsChecked)
-            whipcreamTopping = "Yes please";
-        else
-            whipcreamTopping = "No thanks";
-        if (chocolateIsChecked)
-            chocolateTopping = "Yes please";
-        else
-            chocolateTopping = "No thanks";
+        if (whipcreamIsChecked && chocolateIsChecked) {
+            whipcreamTopping = getString(R.string.affirmative);
+            chocolateTopping = getString(R.string.affirmative);
+        } else if (whipcreamIsChecked && !chocolateIsChecked) {
+            whipcreamTopping = getString(R.string.affirmative);
+            chocolateTopping = getString(R.string.negative);
+        } else if (!whipcreamIsChecked && chocolateIsChecked) {
+            whipcreamTopping = getString(R.string.negative);
+            chocolateTopping = getString(R.string.affirmative);
+        } else {
+            whipcreamTopping = getString(R.string.negative);
+            chocolateTopping = getString(R.string.negative);
+        }
 
     }
 
