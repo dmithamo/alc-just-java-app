@@ -11,6 +11,7 @@ package com.example.dennis.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -23,11 +24,27 @@ public class MainActivity extends AppCompatActivity {
     int number = 0;
     int pricePerCup = 2;
     String name = "_dennoT8";
+    String toppingSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    /**
+     * This method checks which topping is selected
+     */
+
+    public void isClicked(View view) {
+        boolean checked = false;
+        checked = ((CheckBox) view).isChecked();
+        if (checked) {
+            toppingSelected = "Whip Cream";
+        } else {
+            toppingSelected = "None for me, thank you";
+        }
+
     }
 
     /**
@@ -77,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        String thankNote = "Name: " + name + "\nQuantity: " + number + " cups" + "\nTotal: £" + price;
+        String thankNote = "Name: " + name + "\nTopping: " + toppingSelected + "\nQuantity: " + number + " cups" + "\nTotal: £" + price;
         return thankNote;
     }
 
