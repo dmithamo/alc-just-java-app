@@ -121,8 +121,8 @@
             android:layout_marginLeft="@dimen/price_margin_left"
             android:layout_marginStart="@dimen/price_margin_left"
             android:text="@string/price_default_value"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/press_order_text_view"

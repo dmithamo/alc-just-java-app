@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        String thankNote = "Name: " + name + "\nWhip Cream Topping?: " + whipcreamTopping;
-        thankNote += "\nChocolate Topping?: " + chocolateTopping + "\nQuantity: " + number + " cups";
-        thankNote += "\nTotal: £" + price;
+        String thankNote = "Name: " + name + "\nWhip Cream Topping: " + whipcreamTopping;
+        thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + number + " cups";
+        thankNote += "\nTotal: £" + price + ".00";
         return thankNote;
     }
 
