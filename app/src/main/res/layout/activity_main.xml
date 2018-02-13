@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="8dp"
+    android:layout_marginLeft="@dimen/margin_left"
+    android:layout_marginStart="@dimen/margin_left"
     android:orientation="vertical"
     tools:context="com.example.dennis.justjava.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="toppings"
+        android:text="@string/toppings_options"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium" />
 
@@ -23,14 +24,15 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="24dp" />
+            android:layout_marginEnd="@dimen/topping_checkbox_margin"
+            android:layout_marginRight="@dimen/topping_checkbox_margin" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Whip Cream"
-            android:textColor="#000"
-            android:textSize="16sp" />
+            android:text="@string/whip_cream_text"
+            android:textColor="@color/variable_text_color"
+            android:textSize="@dimen/topping_text_size" />
 
     </LinearLayout>
 
@@ -38,8 +40,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="Quantity"
+        android:layout_marginTop="@dimen/view_margin_top"
+        android:text="@string/quantity_text"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium" />
 
@@ -49,10 +51,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
             android:onClick="decrement"
-            android:text="-"
+            android:text="@string/subtract_text"
             android:textAllCaps="true" />
 
 
@@ -60,26 +62,25 @@
             android:id="@+id/quantity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="0"
+            android:padding="@dimen/quantity_text_padding"
+            android:text="@string/current_quantity"
             android:textAllCaps="true"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textColor="@color/variable_text_color" />
 
         <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
             android:onClick="increment"
-            android:text="+"
+            android:text="@string/addition"
             android:textAllCaps="true" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="order summary "
+        android:layout_marginTop="@dimen/view_margin_top"
+        android:text="@string/order_summary_text"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium" />
 
@@ -88,11 +89,9 @@
         android:id="@+id/order_summary_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:text="£0.00"
-        android:textAllCaps="false"
+        android:layout_marginLeft="@dimen/price_margin_left"
+        android:layout_marginStart="@dimen/price_margin_left"
+        android:text="@string/price_default_value"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#000000" />
 
@@ -100,18 +99,16 @@
         android:id="@+id/press_order_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:text="Press 'ORDER' to confirm your order"
-        android:textAllCaps="false"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#000000" />
+        android:text="@string/press_order_text"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="submitOrder"
-        android:padding="8dp"
-        android:text="Order"
+        android:padding="@dimen/order_button_padding"
+        android:text="@string/order_button_text"
         android:textAllCaps="true" />
 
 </LinearLayout>

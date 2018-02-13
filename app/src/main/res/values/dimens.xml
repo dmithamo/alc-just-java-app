@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_left">8dp</dimen>
+    <dimen name="topping_checkbox_margin">24dp</dimen>
+    <dimen name="topping_text_size">16sp</dimen>
+    <dimen name="view_margin_top">8dp</dimen>
+    <dimen name="button_size">48dp</dimen>
+    <dimen name="quantity_text_padding">8dp</dimen>
+    <dimen name="price_margin_left">8dp</dimen>
+    <dimen name="order_button_padding">8dp</dimen>
+</resources>
