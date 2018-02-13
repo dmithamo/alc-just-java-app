@@ -2,6 +2,7 @@
     <string name="app_name">Just Java</string>
     <string name="toppings_options">toppings</string>
     <string name="whip_cream_text">Whip Cream</string>
+    <string name="chocolate_text">Chocolate</string>
     <string name="quantity_text">Quantity</string>
     <string name="subtract_text">-</string>
     <string name="current_quantity">0</string>

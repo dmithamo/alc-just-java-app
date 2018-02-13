@@ -38,6 +38,28 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/topping_checkbox_margin"
+            android:layout_marginRight="@dimen/topping_checkbox_margin"
+            android:onClick="isClicked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chocolate_text"
+            android:textColor="@color/variable_text_color"
+            android:textSize="@dimen/topping_text_size" />
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"

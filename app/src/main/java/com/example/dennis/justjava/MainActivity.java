@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             toppingSelected = "None for me, thank you";
         }
-
-
     }
 
     /**
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-
     /**
      * This method displays the given text on the screen.
      */
@@ -118,6 +115,4 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
-
-
 }
