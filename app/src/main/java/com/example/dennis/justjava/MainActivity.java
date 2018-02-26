@@ -1,28 +1,17 @@
-/**
- * IMPORTANT: Make sure you are using the correct package name.
- * This example uses the package name:
- * package com.example.android.justjava
- * If you get an error when copying this code into Android studio, update it to match teh package name found
- * in the project's AndroidManifest.xml file.
- **/
-
 package com.example.dennis.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
-    int number = 0;
+    int numberOfCups = 0;
     int pricePerCup = 2;
     String name = "_dennoT8";
     String whipcreamTopping;
@@ -65,17 +54,17 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the add(+) button is clicked.
      */
     public void increment(View view) {
-        number += 1;
-        display(number);
+        numberOfCups += 1;
+        display(numberOfCups);
     }
 
     /**
      * This method is called when the add(+) button is clicked.
      */
     public void decrement(View view) {
-        if (number > 0)
-            number -= 1;
-        display(number);
+        if (numberOfCups > 0)
+            numberOfCups -= 1;
+        display(numberOfCups);
     }
 
     /**
@@ -84,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
      * @return int price
      */
     public int calculatePrice() {
-        int price = pricePerCup * number;
+        int price = pricePerCup * numberOfCups;
         return price;
     }
 
@@ -108,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public String createOrderSummary(int price) {
         String thankNote = "Name: " + name + "\nWhip Cream Topping: " + whipcreamTopping;
-        thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + number + " cups";
+        thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
         thankNote += "\nTotal: £" + price + ".00";
         return thankNote;
     }
