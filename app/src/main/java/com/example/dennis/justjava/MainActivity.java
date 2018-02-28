@@ -11,11 +11,17 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-
+    int totalPrice;
     int numberOfCups = 0;
-    int pricePerCup = 2;
+    int pricePerCup = 200;
     String whipcreamTopping;
     String chocolateTopping;
+    CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
+    CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
+    boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
+    boolean chocolateIsChecked = chocolateCheckBox.isChecked();
+    int chocolatePrice = 50;
+    int whipcreamPrice = 100;
     EditText nameEditText;
     String nameOfShopper;
 
@@ -32,21 +38,18 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void isClicked(View view) {
-        CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
-        CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
-
-        boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
-        boolean chocolateIsChecked = chocolateCheckBox.isChecked();
-
         if (whipcreamIsChecked && chocolateIsChecked) {
             whipcreamTopping = getString(R.string.affirmative);
             chocolateTopping = getString(R.string.affirmative);
+
         } else if (whipcreamIsChecked && !chocolateIsChecked) {
             whipcreamTopping = getString(R.string.affirmative);
             chocolateTopping = getString(R.string.negative);
+
         } else if (!whipcreamIsChecked && chocolateIsChecked) {
             whipcreamTopping = getString(R.string.negative);
             chocolateTopping = getString(R.string.affirmative);
+
         } else {
             whipcreamTopping = getString(R.string.negative);
             chocolateTopping = getString(R.string.negative);
@@ -85,8 +88,15 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-        String thankNote = createOrderSummary(price);
+        totalPrice = calculatePrice();
+        if(whipcreamIsChecked){
+            totalPrice += whipcreamPrice;
+        }
+        if(chocolateIsChecked){
+            totalPrice += chocolatePrice;
+        }
+
+        String thankNote = createOrderSummary(totalPrice);
         displayMessage(thankNote);
 
 //      Change the "press 'ORDER' button to confirm order, because order has been placed.
@@ -103,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         nameOfShopper = nameEditText.getText().toString();
         String thankNote = "Name: " + nameOfShopper + "\nWhip Cream Topping: " + whipcreamTopping;
         thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
-        thankNote += "\nTotal: £" + price + ".00";
+        thankNote += "\nTotal: Ksh " + totalPrice + ".00";
         return thankNote;
     }
 
