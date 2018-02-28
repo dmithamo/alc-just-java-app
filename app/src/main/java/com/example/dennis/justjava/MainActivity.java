@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     String whipcreamTopping;
     String chocolateTopping;
     EditText nameEditText;
-    String nameOfBuyer;
+    String nameOfShopper;
 
 
     @Override
@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        nameOfBuyer = nameEditText.getText().toString();
-        String thankNote = "Name: " + nameOfBuyer + "\nWhip Cream Topping: " + whipcreamTopping;
+        nameOfShopper = nameEditText.getText().toString();
+        String thankNote = "Name: " + nameOfShopper + "\nWhip Cream Topping: " + whipcreamTopping;
         thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
         thankNote += "\nTotal: £" + price + ".00";
         return thankNote;
