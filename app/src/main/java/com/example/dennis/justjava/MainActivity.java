@@ -81,27 +81,15 @@ public class MainActivity extends AppCompatActivity {
         display(numberOfCups);
     }
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-    private void display(int number) {
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method is called when the order button is clicked.
-     */
-    public void submitOrder(View view) {
-
-//        Check whether checkboxes are checked
+    public int calculatePrice(){
+    //  Check whether checkboxes are checked
 
         CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
         boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
         boolean chocolateIsChecked = chocolateCheckBox.isChecked();
 
-//        Retrieve value of numberOfCups
+    //  Retrieve value of numberOfCups
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         String q = quantityTextView.getText().toString();
 
@@ -120,6 +108,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int totalPrice = coffeePrice + toppingsPrice;
+
+        return totalPrice;
+    }
+
+    /**
+     * This method displays the given quantity value on the screen.
+     */
+    private void display(int number) {
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + number);
+    }
+
+    /**
+     * This method is called when the order button is clicked.
+     */
+    public void submitOrder(View view) {
+        int totalPrice = calculatePrice();
 
         String thankNote = createOrderSummary(totalPrice);
         displayMessage(thankNote);
