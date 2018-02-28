@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
             toppingsPrice = numberOfCups * whipcreamPrice;
         } else if (!whipcreamIsChecked && chocolateIsChecked) {
             toppingsPrice = numberOfCups * chocolatePrice;
+        }else {
+            toppingsPrice = 0;
         }
 
         int totalPrice = coffeePrice + toppingsPrice;
