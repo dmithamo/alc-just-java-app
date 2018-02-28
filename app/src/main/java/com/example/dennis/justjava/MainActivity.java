@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     int pricePerCup = 2;
     String whipcreamTopping;
     String chocolateTopping;
-    EditText nameEdit;
+    EditText nameEditText;
     String nameOfBuyer;
 
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        nameEdit = findViewById(R.id.name_edit);
+        nameEditText = findViewById(R.id.name_edit);
     }
 
     /**
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        nameOfBuyer = nameEdit.getText().toString();
+        nameOfBuyer = nameEditText.getText().toString();
         String thankNote = "Name: " + nameOfBuyer + "\nWhip Cream Topping: " + whipcreamTopping;
         thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
         thankNote += "\nTotal: £" + price + ".00";
