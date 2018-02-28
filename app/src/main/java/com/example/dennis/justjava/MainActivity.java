@@ -1,5 +1,6 @@
 package com.example.dennis.justjava;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the add(+) button is clicked.
      */
     public void increment(View view) {
-        numberOfCups += 1;
+        if (numberOfCups < 100){
+            numberOfCups += 1;
+        }
         display(numberOfCups);
     }
 
@@ -100,12 +103,21 @@ public class MainActivity extends AppCompatActivity {
 
         int totalPrice = calculatePrice(whipcreamIsChecked, chocolateIsChecked);
 
-        String thankNote = createOrderSummary(totalPrice);
-        displayMessage(thankNote);
+        String theOrder = createOrderSummary(totalPrice);
+//        displayMessage(thankNote);
+//
+////      Change the "press 'ORDER' button to confirm order, because order has been placed.
+//        TextView pressOrder = findViewById(R.id.press_order_text_view);
+//        pressOrder.setText("Order Confirmed :) ");
 
-//      Change the "press 'ORDER' button to confirm order, because order has been placed.
-        TextView pressOrder = findViewById(R.id.press_order_text_view);
-        pressOrder.setText("Order Confirmed :) ");
+
+        Intent sendOrder = new Intent(Intent.ACTION_SEND);
+        sendOrder.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for: " + nameOfShopper);
+        sendOrder.putExtra(Intent.EXTRA_TEXT, theOrder);
+        sendOrder.setType("plain/text");
+        if (sendOrder.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendOrder);
+        }
     }
 
     /**
