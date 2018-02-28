@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -13,14 +14,17 @@ public class MainActivity extends AppCompatActivity {
 
     int numberOfCups = 0;
     int pricePerCup = 2;
-    String name = "_dennoT8";
     String whipcreamTopping;
     String chocolateTopping;
+    EditText nameEdit;
+    String nameOfBuyer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        nameEdit = findViewById(R.id.name_edit);
     }
 
     /**
@@ -96,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        String thankNote = "Name: " + name + "\nWhip Cream Topping: " + whipcreamTopping;
+        nameOfBuyer = nameEdit.getText().toString();
+        String thankNote = "Name: " + nameOfBuyer + "\nWhip Cream Topping: " + whipcreamTopping;
         thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
         thankNote += "\nTotal: £" + price + ".00";
         return thankNote;

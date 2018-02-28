@@ -14,11 +14,12 @@
         tools:context="com.example.dennis.justjava.MainActivity">
 
         <EditText
+            android:id="@+id/name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="5"
             android:hint="What's your name?"
-            android:inputType="textPersonName" />
+            android:inputType="textCapWords" />
 
         <TextView
             android:layout_width="wrap_content"
