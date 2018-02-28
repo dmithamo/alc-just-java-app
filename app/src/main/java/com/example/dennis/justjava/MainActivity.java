@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
@@ -117,18 +118,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //    Send order to email
-    public void sendOrder(View view) {
-        nameOfShopper = nameEditText.getText().toString();
-        Intent sendOrder = new Intent(Intent.ACTION_SEND);
-        sendOrder.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for: " + nameOfShopper);
-        sendOrder.putExtra(Intent.EXTRA_TEXT, theOrder);
-        sendOrder.setType("plain/text");
-        if (sendOrder.resolveActivity(getPackageManager()) != null) {
-            startActivity(sendOrder);
-        }
-    }
-
     /**
      * Method creates a personalized order summary
      *
@@ -138,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
         theOrder = "\nWhip Cream Topping: " + whipcreamStatus;
         theOrder += "\n\nChocolate Topping: " + chocolateStatus + "\n\nQuantity: " + numberOfCups;
         if (numberOfCups == 1){
-            theOrder += "cup";
+            theOrder += " cup";
         }else if (numberOfCups > 1){
-            theOrder += "cups";
+            theOrder += " cups";
         }
         else {
             theOrder = "You have not ordered anything\nPlease check your order";
@@ -156,4 +145,27 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText("Kshs " + message);
     }
+
+
+    //    Send order to email
+    public void sendOrder(View view) {
+        nameOfShopper = nameEditText.getText().toString();
+        if (nameOfShopper.length() > 0 && numberOfCups > 0){
+            Intent sendOrder = new Intent(Intent.ACTION_SEND);
+            sendOrder.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for: " + nameOfShopper);
+            sendOrder.putExtra(Intent.EXTRA_TEXT, theOrder);
+            sendOrder.setType("plain/text");
+            if (sendOrder.resolveActivity(getPackageManager()) != null) {
+                startActivity(sendOrder);
+            }
+        }else if (nameOfShopper.length() == 0){
+            Toast alert = Toast.makeText(this, "Please enter your name", Toast.LENGTH_LONG);
+            alert.show();
+        }
+        if (numberOfCups == 0) {
+            Toast.makeText(this, "You cannot order less than one cup of coffee", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 }
