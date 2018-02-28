@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/topping_checkbox_margin"
                 android:layout_marginRight="@dimen/topping_checkbox_margin"
-                android:onClick="isClicked" />
+                android:onClick="submitOrder" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/topping_checkbox_margin"
                 android:layout_marginRight="@dimen/topping_checkbox_margin"
-                android:onClick="isClicked" />
+                android:onClick="submitOrder" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -11,8 +11,6 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    int toppingsPrice = 0;
-    int coffeePrice = 0;
 
     int numberOfCups = 0;
     int pricePerCup = 200;
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     String chocolateTopping;
 
     int chocolatePrice = 50;
-    int whipcreamPrice = 70;
+    int whipcreamPrice = 100;
 
     EditText nameEditText;
     String nameOfShopper;
@@ -34,12 +32,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method checks which topping is selected
+     * This method displays the given quantity value on the screen.
      */
+    private void display(int number) {
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + number);
+    }
 
-    public void isClicked(View view) {
+    /**
+     * This method is called when the add(+) button is clicked.
+     */
+    public void increment(View view) {
+        numberOfCups += 1;
+        display(numberOfCups);
+    }
+
+    /**
+     * This method is called when the add(+) button is clicked.
+     */
+    public void decrement(View view) {
+        if (numberOfCups > 0)
+            numberOfCups -= 1;
+        display(numberOfCups);
+    }
+
+    public int calculatePrice(boolean hasWhippedCream, boolean hasChocolate){
+        int basePrice = pricePerCup;
+
+        if (hasWhippedCream) {
+            basePrice += whipcreamPrice;
+        }
+
+        if (hasChocolate) {
+            basePrice += chocolatePrice;
+        }
+        int totalPrice = numberOfCups * basePrice;
+
+        return totalPrice;
+    }
 
 
+    /**
+     * This method is called when the order button is clicked.
+     */
+    public void submitOrder(View view) {
         CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
         boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
@@ -62,69 +98,7 @@ public class MainActivity extends AppCompatActivity {
             chocolateTopping = getString(R.string.negative);
         }
 
-    }
-
-    /**
-     * This method is called when the add(+) button is clicked.
-     */
-    public void increment(View view) {
-        numberOfCups += 1;
-        display(numberOfCups);
-    }
-
-    /**
-     * This method is called when the add(+) button is clicked.
-     */
-    public void decrement(View view) {
-        if (numberOfCups > 0)
-            numberOfCups -= 1;
-        display(numberOfCups);
-    }
-
-    public int calculatePrice(){
-    //  Check whether checkboxes are checked
-
-        CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
-        CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
-        boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
-        boolean chocolateIsChecked = chocolateCheckBox.isChecked();
-
-    //  Retrieve value of numberOfCups
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        String q = quantityTextView.getText().toString();
-
-        numberOfCups = Integer.parseInt(q);
-
-        coffeePrice = pricePerCup * numberOfCups;
-
-        if (whipcreamIsChecked && chocolateIsChecked) {
-            toppingsPrice = numberOfCups * (chocolatePrice + whipcreamPrice);
-        } else if (whipcreamIsChecked && !chocolateIsChecked) {
-            toppingsPrice = numberOfCups * whipcreamPrice;
-        } else if (!whipcreamIsChecked && chocolateIsChecked) {
-            toppingsPrice = numberOfCups * chocolatePrice;
-        }else {
-            toppingsPrice = 0;
-        }
-
-        int totalPrice = coffeePrice + toppingsPrice;
-
-        return totalPrice;
-    }
-
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-    private void display(int number) {
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method is called when the order button is clicked.
-     */
-    public void submitOrder(View view) {
-        int totalPrice = calculatePrice();
+        int totalPrice = calculatePrice(whipcreamIsChecked, chocolateIsChecked);
 
         String thankNote = createOrderSummary(totalPrice);
         displayMessage(thankNote);
