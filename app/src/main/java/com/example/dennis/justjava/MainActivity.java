@@ -16,14 +16,16 @@ public class MainActivity extends AppCompatActivity {
     int numberOfCups = 0;
     int pricePerCup = 200;
 
-    String whipcreamTopping;
-    String chocolateTopping;
+    String whipcreamStatus;
+    String chocolateStatus;
 
     int chocolatePrice = 50;
     int whipcreamPrice = 100;
 
     EditText nameEditText;
     String nameOfShopper;
+
+    String theOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +39,18 @@ public class MainActivity extends AppCompatActivity {
      */
     private void display(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText(Integer.toString(number));
     }
 
     /**
      * This method is called when the add(+) button is clicked.
      */
     public void increment(View view) {
-        if (numberOfCups < 100){
+        if (numberOfCups < 100) {
             numberOfCups += 1;
         }
         display(numberOfCups);
+        summarizeOrder(null);
     }
 
     /**
@@ -57,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
         if (numberOfCups > 0)
             numberOfCups -= 1;
         display(numberOfCups);
+        summarizeOrder(null);
     }
 
-    public int calculatePrice(boolean hasWhippedCream, boolean hasChocolate){
+    public int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
         int basePrice = pricePerCup;
 
         if (hasWhippedCream) {
@@ -69,48 +73,53 @@ public class MainActivity extends AppCompatActivity {
         if (hasChocolate) {
             basePrice += chocolatePrice;
         }
-        int totalPrice = numberOfCups * basePrice;
 
-        return totalPrice;
+        return numberOfCups * basePrice;
     }
 
 
     /**
      * This method is called when the order button is clicked.
      */
-    public void submitOrder(View view) {
+    public void summarizeOrder(View view) {
         CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
         boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
         boolean chocolateIsChecked = chocolateCheckBox.isChecked();
 
         if (whipcreamIsChecked && chocolateIsChecked) {
-            whipcreamTopping = getString(R.string.affirmative);
-            chocolateTopping = getString(R.string.affirmative);
+            whipcreamStatus = getString(R.string.affirmative);
+            chocolateStatus = getString(R.string.affirmative);
 
         } else if (whipcreamIsChecked && !chocolateIsChecked) {
-            whipcreamTopping = getString(R.string.affirmative);
-            chocolateTopping = getString(R.string.negative);
+            whipcreamStatus = getString(R.string.affirmative);
+            chocolateStatus = getString(R.string.negative);
 
         } else if (!whipcreamIsChecked && chocolateIsChecked) {
-            whipcreamTopping = getString(R.string.negative);
-            chocolateTopping = getString(R.string.affirmative);
+            whipcreamStatus = getString(R.string.negative);
+            chocolateStatus = getString(R.string.affirmative);
 
         } else {
-            whipcreamTopping = getString(R.string.negative);
-            chocolateTopping = getString(R.string.negative);
+            whipcreamStatus = getString(R.string.negative);
+            chocolateStatus = getString(R.string.negative);
         }
 
         int totalPrice = calculatePrice(whipcreamIsChecked, chocolateIsChecked);
 
-        String theOrder = createOrderSummary(totalPrice);
-//        displayMessage(thankNote);
+        theOrder = createOrderSummary(totalPrice);
+        displayMessage(Integer.toString(totalPrice));
 //
 ////      Change the "press 'ORDER' button to confirm order, because order has been placed.
 //        TextView pressOrder = findViewById(R.id.press_order_text_view);
 //        pressOrder.setText("Order Confirmed :) ");
 
 
+    }
+
+
+    //    Send order to email
+    public void sendOrder(View view) {
+        nameOfShopper = nameEditText.getText().toString();
         Intent sendOrder = new Intent(Intent.ACTION_SEND);
         sendOrder.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for: " + nameOfShopper);
         sendOrder.putExtra(Intent.EXTRA_TEXT, theOrder);
@@ -126,19 +135,25 @@ public class MainActivity extends AppCompatActivity {
      * @return String thankNote
      */
     public String createOrderSummary(int price) {
-        nameOfShopper = nameEditText.getText().toString();
-        String thankNote = "Name: " + nameOfShopper + "\nWhip Cream Topping: " + whipcreamTopping;
-        thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
-        thankNote += "\nTotal: Ksh " + price + ".00";
-        return thankNote;
+        theOrder = "\nWhip Cream Topping: " + whipcreamStatus;
+        theOrder += "\n\nChocolate Topping: " + chocolateStatus + "\n\nQuantity: " + numberOfCups;
+        if (numberOfCups == 1){
+            theOrder += "cup";
+        }else if (numberOfCups > 1){
+            theOrder += "cups";
+        }
+        else {
+            theOrder = "You have not ordered anything\nPlease check your order";
+        }
+        theOrder += "\n\nTotal: Ksh " + price + ".00";
+        return theOrder;
     }
-
 
     /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
+        orderSummaryTextView.setText("Kshs " + message);
     }
 }
