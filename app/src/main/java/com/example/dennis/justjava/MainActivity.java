@@ -11,20 +11,20 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    int totalPrice;
+    int toppingsPrice = 0;
+    int coffeePrice = 0;
+
     int numberOfCups = 0;
     int pricePerCup = 200;
+
     String whipcreamTopping;
     String chocolateTopping;
-    CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
-    CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
-    boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
-    boolean chocolateIsChecked = chocolateCheckBox.isChecked();
+
     int chocolatePrice = 50;
-    int whipcreamPrice = 100;
+    int whipcreamPrice = 70;
+
     EditText nameEditText;
     String nameOfShopper;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void isClicked(View view) {
+
+
+        CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
+        boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
+        boolean chocolateIsChecked = chocolateCheckBox.isChecked();
+
         if (whipcreamIsChecked && chocolateIsChecked) {
             whipcreamTopping = getString(R.string.affirmative);
             chocolateTopping = getString(R.string.affirmative);
@@ -75,26 +82,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method calculates and returns price of order.
-     *
-     * @return int price
+     * This method displays the given quantity value on the screen.
      */
-    public int calculatePrice() {
-        int price = pricePerCup * numberOfCups;
-        return price;
+    private void display(int number) {
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + number);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        totalPrice = calculatePrice();
-        if(whipcreamIsChecked){
-            totalPrice += whipcreamPrice;
+
+//        Check whether checkboxes are checked
+
+        CheckBox whipcreamCheckBox = findViewById(R.id.whip_cream);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate);
+        boolean whipcreamIsChecked = whipcreamCheckBox.isChecked();
+        boolean chocolateIsChecked = chocolateCheckBox.isChecked();
+
+//        Retrieve value of numberOfCups
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        String q = quantityTextView.getText().toString();
+
+        numberOfCups = Integer.parseInt(q);
+
+        coffeePrice = pricePerCup * numberOfCups;
+
+        if (whipcreamIsChecked && chocolateIsChecked) {
+            toppingsPrice = numberOfCups * (chocolatePrice + whipcreamPrice);
+        } else if (whipcreamIsChecked && !chocolateIsChecked) {
+            toppingsPrice = numberOfCups * whipcreamPrice;
+        } else if (!whipcreamIsChecked && chocolateIsChecked) {
+            toppingsPrice = numberOfCups * chocolatePrice;
         }
-        if(chocolateIsChecked){
-            totalPrice += chocolatePrice;
-        }
+
+        int totalPrice = coffeePrice + toppingsPrice;
 
         String thankNote = createOrderSummary(totalPrice);
         displayMessage(thankNote);
@@ -113,17 +136,10 @@ public class MainActivity extends AppCompatActivity {
         nameOfShopper = nameEditText.getText().toString();
         String thankNote = "Name: " + nameOfShopper + "\nWhip Cream Topping: " + whipcreamTopping;
         thankNote += "\nChocolate Topping: " + chocolateTopping + "\nQuantity: " + numberOfCups + " cups";
-        thankNote += "\nTotal: Ksh " + totalPrice + ".00";
+        thankNote += "\nTotal: Ksh " + price + ".00";
         return thankNote;
     }
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-    private void display(int number) {
-        TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
-    }
 
     /**
      * This method displays the given text on the screen.
