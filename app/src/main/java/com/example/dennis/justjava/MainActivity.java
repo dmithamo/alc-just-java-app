@@ -1,6 +1,7 @@
 package com.example.dennis.justjava;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -131,9 +132,7 @@ public class MainActivity extends AppCompatActivity {
         }else if (numberOfCups > 1){
             theOrder += " cups";
         }
-        else {
-            theOrder = "You have not ordered anything\nPlease check your order";
-        }
+
         theOrder += "\n\nTotal: Ksh " + price + ".00";
         return theOrder;
     }
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayMessage(String message) {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText("Kshs " + message);
+        orderSummaryTextView.setText(getString(R.string.currency_units) + message);
     }
 
 
@@ -151,19 +150,19 @@ public class MainActivity extends AppCompatActivity {
     public void sendOrder(View view) {
         nameOfShopper = nameEditText.getText().toString();
         if (nameOfShopper.length() > 0 && numberOfCups > 0){
-            Intent sendOrder = new Intent(Intent.ACTION_SEND);
-            sendOrder.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for: " + nameOfShopper);
+            Intent sendOrder = new Intent(Intent.ACTION_SENDTO);
+            sendOrder.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.enail_subject) + " " + nameOfShopper);
             sendOrder.putExtra(Intent.EXTRA_TEXT, theOrder);
-            sendOrder.setType("plain/text");
+            sendOrder.setData(Uri.parse("mailto:"));
             if (sendOrder.resolveActivity(getPackageManager()) != null) {
                 startActivity(sendOrder);
             }
         }else if (nameOfShopper.length() == 0){
-            Toast alert = Toast.makeText(this, "Please enter your name", Toast.LENGTH_LONG);
+            Toast alert = Toast.makeText(this, R.string.toast_no_name, Toast.LENGTH_LONG);
             alert.show();
         }
         if (numberOfCups == 0) {
-            Toast.makeText(this, "You cannot order less than one cup of coffee", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_zero_coffees, Toast.LENGTH_LONG).show();
         }
 
     }

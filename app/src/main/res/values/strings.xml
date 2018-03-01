@@ -14,4 +14,9 @@
     <string name="affirmative">Yaas!</string>
     <string name="negative">None for me</string>
     <string name="name">What\'s your name?</string>
+    <string name="toast_no_name">Please enter your name</string>
+    <string name="toast_zero_coffees">You cannot order less than one cup of coffee</string>
+    <string name="enail_subject">JustJava Order for:</string>
+    <string name="currency_units">Kshs</string>
+    <string name="order_no_order">You have not ordered anything Please check your order</string>
 </resources>
