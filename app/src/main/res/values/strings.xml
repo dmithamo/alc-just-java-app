@@ -8,9 +8,15 @@
     <string name="current_quantity">0</string>
     <string name="addition">+</string>
     <string name="order_summary_text">order summary</string>
-    <string name="price_default_value">£0.00</string>
+    <string name="price_default_value">Ksh 0.00</string>
     <string name="press_order_text">Press \'ORDER\' to confirm your order</string>
     <string name="order_button_text">Order</string>
-    <string name="affirmative">Yes please</string>
-    <string name="negative">No thanks</string>
+    <string name="affirmative">Yaas!</string>
+    <string name="negative">None for me</string>
+    <string name="name">What\'s your name?</string>
+    <string name="toast_no_name">Please enter your name</string>
+    <string name="toast_zero_coffees">You cannot order less than one cup of coffee</string>
+    <string name="enail_subject">JustJava Order for:</string>
+    <string name="currency_units">Kshs</string>
+    <string name="order_no_order">You have not ordered anything Please check your order</string>
 </resources>

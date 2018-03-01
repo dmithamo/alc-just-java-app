@@ -14,11 +14,12 @@
         tools:context="com.example.dennis.justjava.MainActivity">
 
         <EditText
+            android:id="@+id/name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="5"
-            android:hint="What's your name?"
-            android:inputType="textPersonName" />
+            android:hint="@string/name"
+            android:inputType="textCapWords" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/topping_checkbox_margin"
                 android:layout_marginRight="@dimen/topping_checkbox_margin"
-                android:onClick="isClicked" />
+                android:onClick="summarizeOrder" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/topping_checkbox_margin"
                 android:layout_marginRight="@dimen/topping_checkbox_margin"
-                android:onClick="isClicked" />
+                android:onClick="summarizeOrder" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,7 +143,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="submitOrder"
+            android:onClick="sendOrder"
             android:padding="@dimen/order_button_padding"
             android:text="@string/order_button_text"
             android:textAllCaps="true" />
